@@ -6,8 +6,10 @@
 
     $checP=ejecutarSQL::consultar("SELECT * FROM detalle WHERE CodigoProd='$codeProd'");
     $cons=ejecutarSQL::consultar("SELECT * FROM producto WHERE CodigoProd='$codeProd'");
+    $constock=ejecutarSQL::consultar("SELECT * FROM stock WHERE CodigoProd='$codeProd'");
     $tmp=mysqli_fetch_array($cons, MYSQLI_ASSOC);
     if(mysqli_num_rows($checP)<=0){
+      if(mysqli_num_rows($constock)<=0){
         if(consultasSQL::DeleteSQL('producto', "CodigoProd='".$codeProd."'")){
             $imagen=$tmp['Imagen'];
             $carpeta='../assets/img-products/';
@@ -39,6 +41,9 @@
         }else{
             echo '<script>swal("ERROR", "Ocurrió un error inesperado, por favor intente nuevamente", "error");</script>'; 
         }
+      }else{
+        echo '<script>swal("ERROR", "No podemos eliminar el producto porque se encuentra registrado en el inventario", "error");</script>';
+    }
     }else{
         echo '<script>swal("ERROR", "No podemos eliminar el producto porque se encuentra registrado en una venta", "error");</script>';
     }

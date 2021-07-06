@@ -48,7 +48,7 @@ include './library/consulSQL.php';
                                  <select id="talla" class="form-control" name="talla">
                                  <?php
                                  $tallac = ejecutarSQL::consultar("SELECT * FROM stock INNER JOIN producto ON producto.CodigoProd=stock.CodigoProd INNER JOIN talla ON stock.CodigoTalla=talla.CodigoTalla WHERE stock.CodigoProd='$CodigoProducto' order by talla.Numero asc");
-                                 echo '<option value="0">Seleccione una talla...</option>';
+                                 echo '<option value="0">Seleccionado: '. $fila['Numero'] .'</option>';
                                  while ($sizc = mysqli_fetch_array($tallac, MYSQLI_ASSOC)) {
                                      echo '<option value="' . $sizc['Numero'] . '">' . $sizc['Numero'] . '</option>';
                                 }

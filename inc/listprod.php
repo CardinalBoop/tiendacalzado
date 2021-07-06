@@ -11,7 +11,7 @@
                 //$consulta= ejecutarSQL::consultar("SELECT * FROM producto, talla WHERE Estado='Activo' GROUP BY id ORDER BY id DESC LIMIT 7");
                   //$consulta= ejecutarSQL::consultar("SELECT * FROM producto WHERE Estado='Activo' ORDER BY id DESC LIMIT 7"); 
 
-                $consulta = ejecutarSQL::consultar("SELECT DISTINCT * FROM producto p INNER JOIN stock s ON s.CodigoProd=p.CodigoProd INNER JOIN talla t ON t.CodigoTalla=s.CodigoTalla WHERE p.Estado='Activo' AND p.CodigoProd GROUP BY id order by id DESC LIMIT 7");
+                $consulta = ejecutarSQL::consultar("SELECT DISTINCT * FROM producto p INNER JOIN stock s ON s.CodigoProd=p.CodigoProd INNER JOIN talla t ON t.CodigoTalla=s.CodigoTalla WHERE p.Estado='Activo' AND p.CodigoProd GROUP BY id order by id DESC LIMIT 9");
                   //$talla= ejecutarSQL::consultar("SELECT * FROM talla INNER JOIN stock ON talla.CodigoTalla=stock.CodigoTalla");
                   $totalproductos = mysqli_num_rows($consulta);
                   //$dsa = $talla->fetch_array();

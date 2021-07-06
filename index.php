@@ -42,7 +42,6 @@
             <div class="item">
                 <img src="./assets/img/slider3.jpg" alt="slider3">
                 <div class="carousel-caption">
-                    
                 </div>
             </div>
         </div>
@@ -57,7 +56,6 @@
             <span class="sr-only">Next</span>
         </a>
     </section>
-    
      <!-- Se incluye la lista de productos y footer de la pagina por php include -->
     <?php include './inc/listprod.php'; ?>
 

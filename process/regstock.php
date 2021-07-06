@@ -11,7 +11,11 @@
     if($codeStock!="" && $prodStock!="" && $tallaStock!="" && $cantStock!=""){
         $verificar =  ejecutarSQL::consultar("SELECT * FROM stock WHERE CodigoProd='$prodStock' AND CodigoTalla='$tallaStock'");
         $verificaltotal = mysqli_num_rows($verificar);
+        $verificarcod = ejecutarSQL::consultar("SELECT * FROM stock WHERE CodigoStock='$codeStock'");
+        $verificartotalcod = mysqli_num_rows($verificarcod);
         if($verificaltotal<=0){
+            if($verificartotalcod<=0){
+
                         if(consultasSQL::InsertSQL("stock", "CodigoStock, CodigoProd, CodigoTalla, Cantidad", "'$codeStock','$prodStock','$tallaStock', '$cantStock'")){
                             echo '<script>
                                 swal({
@@ -34,11 +38,17 @@
                                 });
                             </script>';
                         }else{
-                            echo '<script>swal("ERROR", "Ocurrió un error inesperado, por favor intente nuevamente", "error");</script>';
-                        }    
+                            echo '<script>swal("ERROR", "Ocurrió un error inesperado, por favor intente nuevamente.", "error");</script>';
+                        }  
+                    }else{
+                        echo '<script>swal("ERROR", "El codigo de inventario ya se encuentra registrado, ingrese otro.", "error");</script>';
+                    }  
+                
+                          
         }else{
             echo '<script>swal("ERROR", "El producto y la talla no pueden ser repetidas, por favor seleccione otro producto u otra talla", "error");</script>';
         }
+        
     }else {
         echo '<script>swal("ERROR", "Los campos no deben de estar vacíos, por favor verifique e intente nuevamente", "error");</script>';
     }
